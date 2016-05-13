@@ -33,6 +33,7 @@ $(document).ready(function () {
     var filters = collectFilters();
     var data = filterQueryData(queryData, filters);
     buildTable(data, filters);
+    buildChart(data);
   });
 
   function collectFilters() {
@@ -69,11 +70,15 @@ $(document).ready(function () {
 
   function filterQueryData(queryData, filters) {
     var prevItem;
+    var filteredItem;
+    var clinic;
     var filteredData = [];
-    var filteredItem = null;
 
-    $(queryData).each(function (index, filteredItem) {
-      filteredItem = $.extend({}, filteredItem);
+    $(queryData).each(function (index, item) {
+      filteredItem = {
+        year: item.year,
+        ontolgy_id: item.ontolgy_id
+      };
 
       if (filters.yearFrom !== null && filteredItem.year < filters.yearFrom) {
         return;
@@ -88,8 +93,7 @@ $(document).ready(function () {
       }
 
       filteredItem.clinics = [];
-
-      for (property in filteredItem) {
+      for (property in item) {
         if (
           property === 'queryRunTimestamp' || property === 'year' ||
           property === 'clinics' || property === 'ontolgy_id'
@@ -97,10 +101,15 @@ $(document).ready(function () {
           continue;
         }
 
+        if ($.inArray(property, filters.clinics) < 0) {
+          continue;
+        }
+
         filteredItem.clinics.push({
           name: property,
-          count: filteredItem[property]
+          count: item[property]
         });
+        filteredItem[property] = item[property];
       }
 
       prevItem = filteredData[filteredData.length - 1];
@@ -108,7 +117,9 @@ $(document).ready(function () {
       // If there is previous item with same year, sum it
       if (prevItem && prevItem.year == filteredItem.year) {
         for (index in prevItem.clinics) {
-          prevItem.clinics[index].count += filteredItem.clinics[index].count;
+          clinic = prevItem.clinics[index];
+          clinic.count += filteredItem.clinics[index].count;
+          prevItem[clinic.name] = clinic.count;
         }
       } else {
         filteredData.push(filteredItem);
@@ -289,6 +300,18 @@ $(document).ready(function () {
     }
   }
 
+  function showData() {
+    $('#no-data-container').hide();
+    $('#chart-container').show();
+    $('#counts-container').show();
+  }
+  
+  function hideData() {
+    $('#no-data-container').show();
+    $('#chart-container').hide();
+    $('#counts-container').hide();
+  }
+
   function buildTable(data, filters) {
     var $th;
     var $tr;
@@ -304,8 +327,12 @@ $(document).ready(function () {
     );
     $countsTable.html('');
 
-    if (!firstItem)
+    if (!firstItem) {
+      hideData();
       return;
+    }
+
+    showData();
 
     for (index in firstItem.clinics) {
       clinic = firstItem.clinics[index];
