@@ -59,46 +59,25 @@
           </div>
           <h2 class="sub-header">Results Filter</h2>
           <div class="row placeholders">
-            <form class="form-horizontal col-sm-9">
+            <form id="filters-form" class="form-horizontal col-sm-9">
 	  			<div class="form-group">
 	    			<label for="level1select" class="col-sm-2 control-label">Query</label>
 	    			<div class="col-sm-10">
-		    			<select id="level1select" class="form-control">
-						  <option>All</option>
-						  <option>Q1</option>
-						  <option>Q2</option>
-						</select>
+		    			<select id="level1select" class="form-control" name="query"></select>
 					</div>
 	  		   	</div>
 				  	<div class="form-group">
 	    			<label for="fromyearselect" class="col-sm-2 control-label">Day Range</label>
 	    			<div class="col-sm-10">
-		    			<select id="toyearselect" class="form-control">
-						  <option>Today</option>
-						  <option>Past 7 days</option>
-						  <option>Past 30 days</option>
-						  <option>Custom</option>
+		    			<select id="toyearselect" class="form-control" name="day-range">
+						  <option value="1">Today</option>
+						  <option value="7">Past 7 days</option>
+						  <option value="30">Past 30 days</option>
 						</select>
 					   </div>
 	  		   	</div>
 				<div class="form-group">
-				    <div class="col-sm-offset-2 col-sm-10">
-						<label class="checkbox-inline">
-						  <input type="checkbox" id="inlineCheckbox1" value="option1"> UCLA
-						</label>
-						<label class="checkbox-inline">
-						  <input type="checkbox" id="inlineCheckbox2" value="option2"> UCSF
-						</label>
-						<label class="checkbox-inline">
-						  <input type="checkbox" id="inlineCheckbox3" value="option3"> UCI
-						</label>
-						<label class="checkbox-inline">
-						  <input type="checkbox" id="inlineCheckbox3" value="option3"> UCSD
-						</label>
-						<label class="checkbox-inline">
-						  <input type="checkbox" id="inlineCheckbox3" value="option3"> UCD
-						</label>
-				    </div>
+				    <div class="col-sm-offset-2 col-sm-10" id="clinics-filter-container"></div>
 				</div>
 				<div class="form-group">
 				    <div class="col-sm-offset-2 col-sm-10">
@@ -149,6 +128,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="jquery-csv.min.js"></script>
     <script>window.jQuery || document.write('<script src="https://getbootstrap.com/assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="https://getbootstrap.com/dist/js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
@@ -157,5 +137,6 @@
     <script src="https://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
     <script src="stacked_bars.js"></script>
+    <script src="tab_2.js"></script>
   </body>
 </html>
