@@ -89,7 +89,7 @@ $(document).ready(function () {
             continue;
 
           data[prop] = +data[prop];
-          binary.push(data[prop]);
+          binary.unshift(data[prop]);
         }
 
         return binary;
@@ -210,7 +210,7 @@ $(document).ready(function () {
   }
 
   function fillBinary(d, numColumns, binary) {
-    var bitOrder = numColumns - d % numColumns;
+    var bitOrder = numColumns - d % numColumns - 1;
 
     if (binary[bitOrder] == 1)
       return 'rgb(0,104,55)';
