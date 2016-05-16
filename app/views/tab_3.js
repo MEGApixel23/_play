@@ -11,6 +11,20 @@ $(document).ready(function () {
     composeSecondLevel(data, selectedId);
   });
 
+  $('#show-comment-form').click(function (e) {
+    $('#comment-container').show();
+    $(this).hide();
+  });
+
+  $('#comment-form').submit(function (e) {
+    var comment = $(this).find('#comment-text').val();
+    var level1 = parseInt($('#level1select').val());
+    var level2 = parseInt($('#level2select').val());
+    var year = parseInt($('#toyearselect').val());
+
+    // sending comment to a server ...
+  });
+
   $filtersForm.submit(function (e) {
     e.preventDefault();
 
