@@ -31,17 +31,15 @@ $(document).ready(function () {
     var filteredData = [];
     var filters = collectFilters();
 
-    $results.html('');
+    $results.html('<table class="table table-stripped"></table>');
     $.each(data, function (index, item) {
       if (filters.ontology_id.length > 0 && $.inArray(item.ontology_id, filters.ontology_id) < 0) {
         return;
       }
 
       filteredData.push(item);
-      $results.append(
-        '<div class="panel panel-primary js-comment">' +
-          '<div class="panel-body">' + item.comments + '</div>' +
-        '</div>'
+      $results.find('table').append(
+        '<tr><td>' + item.comments + '</td></tr>'
       );
     });
 
