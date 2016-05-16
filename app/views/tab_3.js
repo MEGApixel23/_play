@@ -57,7 +57,11 @@ $(document).ready(function () {
 
     $results.html('<table class="table table-stripped"></table>');
     $.each(data, function (index, item) {
-      if (filters.ontology_id.length > 0 && $.inArray(item.ontology_id, filters.ontology_id) < 0) {
+      if (
+        filters.ontology_id.length > 0 &&
+        filters.ontology_id.indexOf(item.ontology_id) < 0 &&
+        filters.ontology_id.indexOf(item.parent_id) < 0
+      ) {
         return;
       }
 

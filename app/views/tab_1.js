@@ -68,8 +68,22 @@ $(document).ready(function () {
     return transformedFilters;
   }
 
+  function findParentId(id) {
+    var parentId = 0;
+
+    $.each(filtersData.levels, function (index, item) {
+      if (item.id == id) {
+        parentId = item.parentId;
+        return false;
+      }
+    });
+
+    return parentId;
+  }
+
   function filterQueryData(queryData, filters) {
     var prevItem;
+    var parentId;
     var filteredItem;
     var clinic;
     var filteredData = [];
@@ -89,7 +103,10 @@ $(document).ready(function () {
       }
 
       if (filters.ontology_ids.length > 0 && $.inArray(filteredItem.ontolgy_id, filters.ontology_ids) < 0) {
-        return;
+        parentId = findParentId(filteredItem.ontolgy_id);
+
+        if ($.inArray(parentId, filters.ontology_ids) < 0)
+          return;
       }
 
       filteredItem.clinics = [];
@@ -305,7 +322,7 @@ $(document).ready(function () {
     $('#chart-container').show();
     $('#counts-container').show();
   }
-  
+
   function hideData() {
     $('#no-data-container').show();
     $('#chart-container').hide();
