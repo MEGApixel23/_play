@@ -87,39 +87,40 @@
 			</form>  
           </div>
 
-          <h2 class="sub-header">Query Results</h2>
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Query</th>
-                  <th>UCLA</th>
-                  <th>UCI</th>
-                  <th>UCD</th>
-                  <th>UCSF</th>
-                  <th>UCSD</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>Q1</th>
-                  <td>123</td>
-                  <td>234</td>
-                  <td>232</td>
-                  <td>343</td>
-                  <td>1121</td>
-                </tr>
-                <tr>
-                  <th>Q2</th>
-                  <td>454</td>
-                  <td>343</td>
-                  <td>343</td>
-                  <td>2342</td>
-                  <td>1212</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+            <div id="counts-container" class="table-responsive" hidden>
+                <h2 class="sub-header">Query Results</h2>
+                <table id="result-table" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Query</th>
+                        <th>UCLA</th>
+                        <th>UCI</th>
+                        <th>UCD</th>
+                        <th>UCSF</th>
+                        <th>UCSD</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>Q1</th>
+                        <td>123</td>
+                        <td>234</td>
+                        <td>232</td>
+                        <td>343</td>
+                        <td>1121</td>
+                    </tr>
+                    <tr>
+                        <th>Q2</th>
+                        <td>454</td>
+                        <td>343</td>
+                        <td>343</td>
+                        <td>2342</td>
+                        <td>1212</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div hidden id="no-data-container"><h2>No data</h2></div>
         </div>
       </div>
     </div>
