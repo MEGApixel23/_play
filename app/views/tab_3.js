@@ -17,12 +17,36 @@ $(document).ready(function () {
   });
 
   $('#comment-form').submit(function (e) {
+    e.preventDefault();
+
+    var ontologyId;
     var comment = $(this).find('#comment-text').val();
     var level1 = parseInt($('#level1select').val());
     var level2 = parseInt($('#level2select').val());
-    var year = parseInt($('#toyearselect').val());
 
-    // sending comment to a server ...
+    level1 = isNaN(level1) ? null : level1;
+    level2 = isNaN(level2) ? null : level2;
+
+    if (level2) {
+      ontologyId = level2;
+    } else if (level1) {
+      ontologyId = level1;
+    } else {
+      ontologyId = 0;
+    }
+
+    $.ajax({
+      type: 'POST',
+      url: '/api/ontology/comments',
+      data: {
+        'API_TOKEN': 'some-api-token',
+        'ONTOLOGY_ID': ontologyId,
+        'COMMENT': comment
+      },
+      success: function (res) {
+        // do something after creating a comment...
+      }
+    });
   });
 
   $filtersForm.submit(function (e) {
