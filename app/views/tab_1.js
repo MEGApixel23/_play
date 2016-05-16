@@ -129,10 +129,17 @@ $(document).ready(function () {
         filteredItem[property] = item[property];
       }
 
-      prevItem = filteredData[filteredData.length - 1];
+
+      prevItem = null;
+      $.each(filteredData, function (index, item) {
+        if (item.year == filteredItem.year) {
+          prevItem = item;
+          return false;
+        }
+      });
 
       // If there is previous item with same year, sum it
-      if (prevItem && prevItem.year == filteredItem.year) {
+      if (prevItem) {
         for (index in prevItem.clinics) {
           clinic = prevItem.clinics[index];
           clinic.count += filteredItem.clinics[index].count;
