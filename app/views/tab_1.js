@@ -40,7 +40,7 @@ $(document).ready(function () {
     var filter;
     var filters = $filtersForm.serializeArray();
     var transformedFilters = {
-      ontolgy_ids: [],
+      ontology_ids: [],
       clinics: [],
       yearFrom: null,
       yearTo: null
@@ -53,9 +53,9 @@ $(document).ready(function () {
         continue;
 
       if (filter.name === 'level1') {
-        transformedFilters.ontolgy_ids = [parseInt(filter.value)];
+        transformedFilters.ontology_ids = [parseInt(filter.value)];
       } else if (filter.name === 'level2') {
-        transformedFilters.ontolgy_ids = [parseInt(filter.value)];
+        transformedFilters.ontology_ids = [parseInt(filter.value)];
       } else if (filter.name === 'date-from') {
         transformedFilters.yearFrom = parseInt(filter.value);
       } else if (filter.name === 'date-to') {
@@ -74,7 +74,7 @@ $(document).ready(function () {
     var clinic;
     var filteredData = [];
 
-    $(queryData).each(function (index, item) {
+    $.each(queryData, function (index, item) {
       filteredItem = {
         year: item.year,
         ontolgy_id: item.ontolgy_id
@@ -88,7 +88,7 @@ $(document).ready(function () {
         return;
       }
 
-      if (filters.ontolgy_ids.length > 0 && $.inArray(filteredItem.ontolgy_id, filters.ontolgy_ids) < 0) {
+      if (filters.ontology_ids.length > 0 && $.inArray(filteredItem.ontolgy_id, filters.ontology_ids) < 0) {
         return;
       }
 
@@ -132,7 +132,7 @@ $(document).ready(function () {
   function transformOntologyData(data) {
     var transformedData = [];
 
-    $(data).each(function (index, item) {
+    $.each(data, function (index, item) {
       var id = parseInt(item[KEY_ONTOLOGY_ID]);
       var parentId = parseInt(item[KEY_PARENT_ID]);
       var name = item[KEY_ONTOLOGY_NAME];
@@ -151,7 +151,7 @@ $(document).ready(function () {
   function transformCommonData(data) {
     var transformedData = [];
 
-    $(data).each(function (index, item) {
+    $.each(data, function (index, item) {
       var year = parseInt(item['Year']);
       var transformedItem = {
         year: isNaN(year) ? 0 : year
@@ -174,7 +174,7 @@ $(document).ready(function () {
   function transformQueryData(data) {
     var transformedData = [];
 
-    $(data).each(function (index, item) {
+    $.each(data, function (index, item) {
       var year = parseInt(item['Year']);
       var transformedItem = {
         year: isNaN(year) ? 0 : year,
@@ -202,7 +202,7 @@ $(document).ready(function () {
     $firstLevelSelect.html('');
     $firstLevelSelect.append($option);
 
-    $(filtersData.levels).each(function (index, item) {
+    $.each(filtersData.levels, function (index, item) {
       if (item.parentId === 0) {
         $option = $('<option></option>');
 
@@ -222,7 +222,7 @@ $(document).ready(function () {
     $secondLevelSelect.html('');
     $secondLevelSelect.append($option);
 
-    $(filtersData.levels).each(function (index, item) {
+    $.each(filtersData.levels, function (index, item) {
       if (item.parentId === selectedId && selectedId > 0) {
         $option = $('<option></option>');
 
@@ -242,7 +242,7 @@ $(document).ready(function () {
     $yearFromSelect.html('');
     $yearFromSelect.html($option);
 
-    $(data).each(function (index, item) {
+    $.each(data, function (index, item) {
       if (yearTo >= item.year)
         return;
 
@@ -263,7 +263,7 @@ $(document).ready(function () {
     $yearToSelect.html('');
     $yearToSelect.html($option);
 
-    $(data).each(function (index, item) {
+    $.each(data, function (index, item) {
       if (yearFrom > item.year)
         return;
 
@@ -348,7 +348,7 @@ $(document).ready(function () {
 
     $countsTable.html($headerLayout);
 
-    $(data).each(function (index, item) {
+    $.each(data, function (index, item) {
       $tr = $('<tr></tr>');
       $td = $('<td></td>').text(item.year);
 

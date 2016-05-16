@@ -14,7 +14,7 @@ $(document).ready(function () {
     $yearFromSelect.html('');
     $yearFromSelect.html($option);
 
-    $(years).each(function (index, year) {
+    $.each(years, function (index, year) {
       if (yearTo >= year)
         return;
 
@@ -35,7 +35,7 @@ $(document).ready(function () {
     $yearToSelect.html('');
     $yearToSelect.html($option);
 
-    $(years).each(function (index, year) {
+    $.each(years, function (index, year) {
       if (yearFrom > year)
         return;
 
@@ -74,7 +74,7 @@ $(document).ready(function () {
   function transformData(rawData, filters) {
     var data = [];
 
-    $(rawData).each(function (index, item) {
+    $.each(rawData, function (index, item) {
       var binary = (function (data) {
         var binary = [];
 

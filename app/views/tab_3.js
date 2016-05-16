@@ -32,7 +32,7 @@ $(document).ready(function () {
     var filters = collectFilters();
 
     $results.html('');
-    $(data).each(function (index, item) {
+    $.each(data, function (index, item) {
       if (filters.ontology_id.length > 0 && $.inArray(item.ontology_id, filters.ontology_id) < 0) {
         return;
       }
@@ -55,7 +55,7 @@ $(document).ready(function () {
     $firstLevelSelect.html('');
     $firstLevelSelect.append($option);
 
-    $(data).each(function (index, item) {
+    $.each(data, function (index, item) {
       if (item.parent_id === 0) {
         $option = $('<option></option>');
 
@@ -75,7 +75,7 @@ $(document).ready(function () {
     $secondLevelSelect.html('');
     $secondLevelSelect.append($option);
 
-    $(data).each(function (index, item) {
+    $.each(data, function (index, item) {
       if (item.parent_id === selectedId && selectedId > 0) {
         $option = $('<option></option>');
 
