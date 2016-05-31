@@ -134,7 +134,7 @@ $(document).ready(function () {
     $.each(data, function (index, item) {
       var year = item['year'];
       if(ontologyId == item['ontolgy_id'] && (year >= years.min && year <= years.max)){
-        var transformedItem = {'label': year,  values: [item['UCD'], item['UCI'], item['UCLA'], item['UCSD'], item['UCSF']]};
+        var transformedItem = {'label': year,  values: [item['UCLA'], item['UCSF'], item['UCI'], item['UCSD'], item['UCD']]};
         transformedData.push(transformedItem);
       }
     });
