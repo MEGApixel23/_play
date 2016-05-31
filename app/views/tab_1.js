@@ -266,7 +266,9 @@ $(document).ready(function () {
       parsedData.tree = transformOntologyData($.csv.toObjects(csvd));
 
       //init JsTree
-      $('#jstree_div').jstree({ 'core' : {
+      $('#jstree_div').jstree({
+        "plugins" : [ "wholerow" ],
+        'core' : {
         'data' : parsedData.tree
       } });
     },
