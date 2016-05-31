@@ -191,9 +191,14 @@ $(document).ready(function () {
       year_arr.sort();
       chartFilters.years.min = year_arr[0];
       chartFilters.years.max = year_arr[year_arr.length - 1];
+      $('#fromRange').html(year_arr[0]);
+      $('#toRange').html(year_arr[year_arr.length - 1]);
+
     }else{
       chartFilters.years.min = '';
       chartFilters.years.max = '';
+      $('#fromRange').html('');
+      $('#toRange').html('');
     }
   }
 
@@ -211,6 +216,9 @@ $(document).ready(function () {
         var years = event.value.newValue;
         chartFilters.years.min = years[0];
         chartFilters.years.max = years[1];
+
+        $('#fromRange').html(years[0]);
+        $('#toRange').html(years[1]);
 
         drawChart();
       }).show();

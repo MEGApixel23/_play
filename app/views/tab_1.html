@@ -103,6 +103,13 @@
             border: 1px #ff0000 solid;
         }
 
+        .pd-rigth-15{
+            padding-right: 15px;
+        }
+
+        .pd-left-15{
+            padding-left: 15px;
+        }
         /*
         * Model Window
         */
@@ -179,7 +186,7 @@
                 <div class="col-sm-6">
                     <div class="blSlide" id="blSlide">
                         <span class="labelSlide">YEAR SLIDE</span>
-                        <input id="yearSlider" type="text" class="span2 hide" value=""/>
+                        <span id="fromRange" class="pd-rigth-15"></span><input id="yearSlider" type="text" class="span2 hide" value=""/><span id="toRange" class="pd-left-15"></span>
                     </div>
                     <div id="blCharts"></div>
                 </div>
@@ -188,7 +195,7 @@
                 <div class="col-sm-12">
                     <div class="">
                         <span class="labelSlide">NOTES</span>
-                        <span class="rigth"><button type="button" id="btnAddComment"  data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Comment</button></span>
+                        <span class="rigth"><button type="button" id="btnAddComment"  data-toggle="modal" data-target="#myModal" class="btn btn-default">Add Comment</button></span>
                     </div>
 
                     <div id="myModal" class="modal fade" role="dialog">
