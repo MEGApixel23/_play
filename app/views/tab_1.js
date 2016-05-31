@@ -21,7 +21,50 @@ $(document).ready(function () {
 
   var isInitSlider = false;
 
+  //Fill select for Add Comment
+  $.each(LIST_HOSPITALS, function(index, item){
+    var x = document.getElementById("hospital");
+    var option = document.createElement("option");
+    option.text = item;
+    x.add(option);
+  });
 
+  //Send Comment
+  $('#comment-form').submit(function (e) {
+    e.preventDefault();
+
+    var formData = {};
+    $("#comment-form").serializeArray().map(function(x){formData[x.name] = x.value;});
+    formData.ontology_id = chartFilters.ontologyId;
+
+    //Validation
+    if(formData.hospital == "")
+      $('#hospital').addClass('has-error');
+    else
+      $('#hospital').removeClass('has-error');
+
+    if(formData.comment == "")
+      $('#comment').addClass('has-error');
+    else
+      $('#comment').removeClass('has-error');
+
+    if(formData.hospital != "" && formData.comment != ""){
+      $.ajax({
+        type: 'POST',
+        url: '/api/ontology/comments',
+        data: {
+          'API_TOKEN': 'some-api-token',
+          'ontology_id': formData.ontology_id,
+          'comments': formData.comment,
+          'hospital': formData.hospital
+        },
+        success: function (res) {
+          // do something after creating a comment...
+          alert('Successful');
+        }
+      });
+    }
+  });
 
   //Listener 'Click' on jsTree
   $('#jstree_div').on("changed.jstree", function (e, data) {
@@ -37,10 +80,29 @@ $(document).ready(function () {
       initSlider();
       drawChart();
 
+      //Show button Add Comment
+      showBtnAddComment();
       //Showing Notes
       showNotes(parentId);
+
+      clearFormComment();
     }
   });
+
+
+  function clearFormComment(){
+    $('#myModal').on('hidden.bs.modal', function () {
+      $(this).find('form').trigger('reset');
+    });
+  }
+
+  function showBtnAddComment(){
+    $('#btnAddComment').show();
+  }
+
+  function hideBtnAddComment(){
+    $('#btnAddComment').hide();
+  }
 
   function transformQueryData(data) {
     var transformedData = [];
@@ -185,6 +247,9 @@ $(document).ready(function () {
     }
 
   }
+
+
+  hideBtnAddComment();
 
   // Getting data for jsTree
   $.ajax({
