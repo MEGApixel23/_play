@@ -1,0 +1,27 @@
+ontology_id,parent_id,ontology_name
+1,0,Demographics
+2,0,ICD-9-CM
+3,0,Medications
+4,0,Vital Signs
+5,0,Vital Status
+6,2,Diseases and injuries
+7,2,Procedures
+8,3,Alimentary Tract and metabolism
+9,3,Blood and Blood Forming organs
+10,3,Cardiovascular System
+11,3,Dermatologicals
+12,10,Cardiac Therapy
+13,10,Antihypertensives
+14,10,Diuretics
+15,1,Age
+16,1,Ethnicity
+17,1,Gender
+18,1,Language
+19,1,Marital Status
+20,1,Race
+21,1,Religion
+22,6,Certain conditions originating in the prenatal period (760-779)
+23,6,Diseases of the blood and blood forming organs
+24,15,0-20 years old 
+25,15,20-30 years old
+26,15,>30 years old
