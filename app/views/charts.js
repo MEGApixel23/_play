@@ -1,5 +1,5 @@
 function buildChart(listHospitals, dataChart) {
-
+console.log(dataChart);
     //Clear previous Charts
     clearChart();
 
@@ -68,15 +68,12 @@ function buildChart(listHospitals, dataChart) {
 
             // Add text label in bar
             bar.append("text")
-                .attr("x", function (d) {
-                    return x(d) - 30;
-                })
+                .attr("x", function(d) { return x(d) + 3; })
                 .attr("y", barHeight / 2)
                 .attr("fill", "red")
-                .attr("dy", ".30em")
-                .text(function (d) {
-                    return d;
-                });
+                .attr("dy", ".25em")
+                .style('font-size', '0.8em')
+                .text(function(d) { return d; });
 
             // Draw labels
             bar.append("text")
