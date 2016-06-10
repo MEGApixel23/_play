@@ -21,7 +21,7 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/css/bootstrap-slider.min.css"/>
 
-    <style>
+    <style type="text/css">
         /*
         * Custom Styles for Charts
         */
@@ -44,6 +44,11 @@
             text-anchor: end;
         }
 
+        .chartContainer{
+            position:relative;
+
+        }
+
         .bar:hover {
             fill: brown;
         }
@@ -60,6 +65,9 @@
             font-size: 1.2em;
             font-weight: 700;
             padding-left: 5px;
+            position:absolute;
+            top:100%;
+            margin-top:-60px;
         }
 
         .labelSlide {
@@ -68,7 +76,7 @@
             font-size: 1.4em;
         }
 
-        /*
+         /*
         * Others blocks on page
         */
         .blSlide {
